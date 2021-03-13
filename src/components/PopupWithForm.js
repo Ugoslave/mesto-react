@@ -1,8 +1,8 @@
 function PopupWithForm(props) {
   return (
-  <div className={`popup popup_place_${props.name}`}>
+  <div className={`popup popup_place_${props.name} ${props.isOpen && ('popup_active')}`}>
     <div className={`popup__container popup__container_place_${props.name}`}>
-      <button type="button" className={`popup__button-close popup__button-close_place_${props.name}`}>
+      <button type="button" className={`popup__button-close popup__button-close_place_${props.name}`} onClick = {props.onClose}>
         <img src="<%=require('./images/popup-closeButton.svg')%>" alt="Закрыть" className="popup__button-image" />
       </button>
       <div className={`popup__form-box popup__form-box_place_${props.name}`}>

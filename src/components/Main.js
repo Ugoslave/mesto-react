@@ -1,22 +1,10 @@
-function Main() {
-
-  function handleEditAvatarClick() {
-    document.querySelector('.popup_place_avatar-update').classList.add('popup_active');
-  }
-
-  function handleEditProfileClick() {
-    document.querySelector('.popup').classList.add('popup_active');
-  }
-
-  function handleAddPlaceClick() {
-    document.querySelector('.popup_place_add-element').classList.add('popup_active');
-  }
+function Main(props) {
 
   return (
     <>
     <section className="profile">
         <div className="profile__info">
-          <div onClick={handleEditAvatarClick} className="profile__avatar-box">
+          <div onClick={props.onEditAvatar} className="profile__avatar-box">
             <img src="#" alt="Аватар" className="profile__avatar" />
           </div>
           <div className="profile__info-container">
@@ -24,10 +12,10 @@ function Main() {
               <h1 className="profile__title">Жак-Ив Кусто</h1>
               <p className="profile__subtitle">Исследователь океана</p>
             </div>
-            <button type="button" onClick={handleEditProfileClick} className="profile__edit-button" />
+            <button type="button" onClick={props.onEditProfile} className="profile__edit-button" />
           </div>
         </div>
-        <button type="button" onClick={handleAddPlaceClick} className="profile__add-button" />
+        <button type="button" onClick={props.onAddPlace} className="profile__add-button" />
       </section>
       <section className="cards-container">
         <ul className="elements">

@@ -3,16 +3,40 @@ import Main from './Main';
 import Footer from './Footer';
 import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
+import React from 'react';
 
 function App() {
+  
+  const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false);
+  const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false);
+  const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false);
+
+  function handleEditAvatarClick() {
+    setEditAvatarPopupOpen(true);
+  }
+
+  function handleEditProfileClick() {
+    setEditProfilePopupOpen(true);
+  }
+
+  function handleAddPlaceClick() {
+    setAddPlacePopupOpen(true);
+  }
+
+  function closeAllPopups() {
+    setEditAvatarPopupOpen(false);
+    setEditProfilePopupOpen(false);
+    setAddPlacePopupOpen(false);
+  }
+
   return (
 <>
   <div className="page">
     <Header />
-    <Main />
+    <Main onEditProfile = {handleEditProfileClick} onAddPlace = {handleAddPlaceClick} onEditAvatar = {handleEditAvatarClick} />
     <Footer />
   </div>
-  <PopupWithForm name = "profile" title = "Редактировать профиль" buttonText = "Сохранить">
+  <PopupWithForm name = "profile" title = "Редактировать профиль" buttonText = "Сохранить" isOpen = {isEditProfilePopupOpen} onClose = {closeAllPopups}>
           <input 
             required 
             type="text" 
@@ -35,7 +59,7 @@ function App() {
           <span id="about-card-error" className="popup__input-error" />
   </PopupWithForm>
   
-  <PopupWithForm name = "add-element" title = "Новое место" buttonText = "Создать">
+  <PopupWithForm name = "add-element" title = "Новое место" buttonText = "Создать" isOpen = {isAddPlacePopupOpen} onClose = {closeAllPopups}>
           <input 
             required 
             type="text" 
@@ -60,7 +84,7 @@ function App() {
 
   <PopupWithForm name="remove-confirmation" title ="Вы уверены?" buttonText = "Да" />
   
-  <PopupWithForm name="avatar-update" title ="Обновить аватар" buttonText = "Сохранить">
+  <PopupWithForm name="avatar-update" title ="Обновить аватар" buttonText = "Сохранить" isOpen = {isEditAvatarPopupOpen} onClose = {closeAllPopups}>
           <input 
             required 
             type="url" 
