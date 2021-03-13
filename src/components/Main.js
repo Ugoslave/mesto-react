@@ -1,7 +1,7 @@
 function Main() {
 
   function handleEditAvatarClick() {
-    document.querySelector('.popup_content_avatar-update').classList.add('popup_active');
+    document.querySelector('.popup_place_avatar-update').classList.add('popup_active');
   }
 
   function handleEditProfileClick() {
@@ -9,7 +9,7 @@ function Main() {
   }
 
   function handleAddPlaceClick() {
-    document.querySelector('.popup_content_add-element').classList.add('popup_active');
+    document.querySelector('.popup_place_add-element').classList.add('popup_active');
   }
 
   return (
