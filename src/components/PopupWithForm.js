@@ -7,7 +7,7 @@ function PopupWithForm(props) {
       </button>
       <div className={`popup__form-box popup__form-box_place_${props.name}`}>
         <h2 className={`popup__title popup__title_place_${props.name}`}>{props.title}</h2>
-        <form name={`${props.name}`} className={`popup__form popup__form_place_${props.name}`} novalidate>
+        <form name = {props.name} className={`popup__form popup__form_place_${props.name}`} novalidate>
           {props.children}
           <button type="submit" className={`popup__button-save popup__button-save_place_${props.name}`}>{props.buttonText}</button>
         </form>

@@ -1,5 +1,6 @@
 import React from 'react';
 import api from '../utils/Api';
+import Card from './Card';
 
 function Main(props) {
 
@@ -21,23 +22,7 @@ function Main(props) {
     .then(res => {
       const cardList = res.map(item => {
         return (
-            <li className="element">
-              <div className="element__image-box">
-                <img src={`${item.link}`} alt="Фото красивого места" className="element__image" />
-                <button type="button" className="element__remove-button">
-                  <img src="<%=require('./images/element-removeButton.svg')%>" alt="Удалить" />
-                </button>
-              </div>
-              <div className="element__text-box">
-                <h2 className="element__title">{item.name}</h2>
-                <div className="element__like-box">
-                  <button type="button" className="element__button">
-                    <img src="<%=require('./images/element-like.svg')%>" alt="Нравится" />
-                  </button>
-                  <p className="element__likes-number">{item.likes.length}</p>
-                </div>
-              </div>
-            </li>
+          <Card key = {item._id} card = {item} onCardClick = {props.onCardClick} />
         )
       });
 
@@ -51,7 +36,7 @@ function Main(props) {
     <section className="profile">
         <div className="profile__info">
           <div onClick={props.onEditAvatar} className="profile__avatar-box">
-            <img src={`${userAvatar}`} alt="Аватар" className="profile__avatar" />
+            <img src = {userAvatar} alt="Аватар" className="profile__avatar" />
           </div>
           <div className="profile__info-container">
             <div className="profile__title-box">
