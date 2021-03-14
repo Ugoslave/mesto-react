@@ -1,16 +1,33 @@
+import React from 'react';
+import api from '../utils/Api';
+
 function Main(props) {
+
+  let [userName, setUserName] = React.useState();
+  let [userDescription, setUserDescription] = React.useState();
+  let [userAvatar, setUserAvatar] = React.useState();
+
+  React.useEffect(() => {
+    api.getUserData()
+    .then(res => {
+      userName = setUserName(res.name);
+      userDescription = setUserDescription(res.about);
+      userAvatar = setUserAvatar(res.avatar);
+    }) 
+    .catch(err => console.log(err));
+  }, [userName, userDescription, userAvatar]);
 
   return (
     <>
     <section className="profile">
         <div className="profile__info">
           <div onClick={props.onEditAvatar} className="profile__avatar-box">
-            <img src="#" alt="Аватар" className="profile__avatar" />
+            <img src={`${userAvatar}`} alt="Аватар" className="profile__avatar" />
           </div>
           <div className="profile__info-container">
             <div className="profile__title-box">
-              <h1 className="profile__title">Жак-Ив Кусто</h1>
-              <p className="profile__subtitle">Исследователь океана</p>
+              <h1 className="profile__title">{userName}</h1>
+              <p className="profile__subtitle">{userDescription}</p>
             </div>
             <button type="button" onClick={props.onEditProfile} className="profile__edit-button" />
           </div>
