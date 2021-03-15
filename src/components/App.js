@@ -10,7 +10,7 @@ function App() {
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false);
-  const [selectedCard, setSelectedCard] = React.useState(false);
+  const [selectedCard, setSelectedCard] = React.useState('');
 
   function handleEditAvatarClick() {
     setEditAvatarPopupOpen(true);
@@ -32,7 +32,7 @@ function App() {
     setEditAvatarPopupOpen(false);
     setEditProfilePopupOpen(false);
     setAddPlacePopupOpen(false);
-    setSelectedCard(false);
+    setSelectedCard('');
   }
 
   return (
@@ -58,8 +58,8 @@ function App() {
       type="text" 
       name="name" 
       placeholder="Имя" 
-      minlength="2" 
-      maxlength="40" 
+      minLength="2" 
+      maxLength="40" 
       id="name-card" 
       className="popup__input popup__input_data_name" />
     <span id="name-card-error" className="popup__input-error" />
@@ -68,8 +68,8 @@ function App() {
       type="text" 
       name="about" 
       placeholder="О себе" 
-      minlength="2" 
-      maxlength="200" 
+      minLength="2" 
+      maxLength="200" 
       id="about-card" 
       className="popup__input popup__input_data_about-yourself" />
     <span id="about-card-error" className="popup__input-error" />
@@ -86,8 +86,8 @@ function App() {
       type="text" 
       name="name" 
       placeholder = "Название" 
-      minlength="2" 
-      maxlength="30" 
+      minLength="2" 
+      maxLength="30" 
       id="title-card" 
       className="popup__input popup__input_data_title" />
     <span id="title-card-error" className="popup__input-error" />
