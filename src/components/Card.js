@@ -1,7 +1,7 @@
 import removeButton from "../images/element-removeButton.svg";
 import likeButton from "../images/element-like.svg";
 
-function Card({ card, onCardClick }) {
+function Card ({ card, onCardClick }) {
   function handleClick() {
     onCardClick(card);
   }
