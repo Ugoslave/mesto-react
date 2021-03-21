@@ -3,7 +3,7 @@ import likeButton from "../images/element-like.svg";
 import React from "react";
 import {CurrentUserContext} from "../contexts/CurrentUserContext";
 
-function Card ({ card, onCardClick, onCardLike }) {
+function Card ({ card, onCardClick, onCardLike, onCardDelete }) {
   const user = React.useContext(CurrentUserContext);
   const isOwn = card.owner._id === user.id;
   const cardDeleteButtonClassName = (
@@ -22,6 +22,10 @@ function Card ({ card, onCardClick, onCardLike }) {
     onCardLike(card);
   }
 
+  function handleDeleteClick() {
+    onCardDelete(card);
+  }
+
   return (
     <li className="element">
       <div className="element__image-box">
@@ -31,7 +35,7 @@ function Card ({ card, onCardClick, onCardLike }) {
           className="element__image"
           onClick={handleClick}
         />
-        <button type="button" className= {cardDeleteButtonClassName}>
+        <button type="button" className= {cardDeleteButtonClassName} onClick = {handleDeleteClick}>
           <img src={removeButton} alt="Удалить" />
         </button>
       </div>

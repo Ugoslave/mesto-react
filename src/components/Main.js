@@ -26,6 +26,14 @@ function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick }) {
   }
 } 
 
+function handleCardDelete(card) {
+  
+  api.removeElement(card._id)
+  .then(
+    setCards((state) => state.filter((c) => c._id !== card._id)))
+  .catch(err => console.log(err));
+} 
+
   React.useEffect(() => {
     api
       .getAllCards()
@@ -64,7 +72,7 @@ function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick }) {
         <ul className="elements">
           {cards.map((item) => {
             return (
-              <Card key={item._id} card={item} onCardClick={onCardClick} onCardLike={handleCardLike}/>
+              <Card key={item._id} card={item} onCardClick={onCardClick} onCardLike={handleCardLike} onCardDelete = {handleCardDelete} />
             );
           })}
         </ul>
