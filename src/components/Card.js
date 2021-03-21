@@ -3,7 +3,7 @@ import likeButton from "../images/element-like.svg";
 import React from "react";
 import {CurrentUserContext} from "../contexts/CurrentUserContext";
 
-function Card ({ card, onCardClick }) {
+function Card ({ card, onCardClick, onCardLike }) {
   const user = React.useContext(CurrentUserContext);
   const isOwn = card.owner._id === user.id;
   const cardDeleteButtonClassName = (
@@ -16,6 +16,10 @@ function Card ({ card, onCardClick }) {
 
   function handleClick() {
     onCardClick(card);
+  }
+
+  function handleLikeClick() {
+    onCardLike(card);
   }
 
   return (
@@ -34,7 +38,7 @@ function Card ({ card, onCardClick }) {
       <div className="element__text-box">
         <h2 className="element__title">{card.name}</h2>
         <div className="element__like-box">
-          <button type="button" className= {cardLikeButtonClassName}>
+          <button type="button" className= {cardLikeButtonClassName} onClick = {handleLikeClick}>
             <img src={likeButton} alt="Нравится" />
           </button>
           <p className="element__likes-number">{card.likes.length}</p>

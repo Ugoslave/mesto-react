@@ -8,6 +8,24 @@ function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick }) {
   const user = React.useContext(CurrentUserContext);
   const [cards, setCards] = React.useState([]);
 
+  function handleCardLike(card) {
+    const isLiked = card.likes.some(i => i._id === user.id);
+    // Отправляем запрос в API и получаем обновлённые данные карточки
+    if (!isLiked) {
+    api.putLikeElement(card._id)
+    .then((newCard) => {
+        setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+    })
+    .catch(err => console.log(err));
+  } else {
+    api.deleteLikeElement(card._id)
+    .then((newCard) => {
+        setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+    })
+    .catch(err => console.log(err));
+  }
+} 
+
   React.useEffect(() => {
     api
       .getAllCards()
@@ -46,7 +64,7 @@ function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick }) {
         <ul className="elements">
           {cards.map((item) => {
             return (
-              <Card key={item._id} card={item} onCardClick={onCardClick} />
+              <Card key={item._id} card={item} onCardClick={onCardClick} onCardLike={handleCardLike}/>
             );
           })}
         </ul>
