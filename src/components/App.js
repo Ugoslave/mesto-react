@@ -47,6 +47,22 @@ function App() {
     setSelectedCard(selectedCard);
   }
 
+  function handleUpdateUser(evt) {
+    api
+      .changeUserData(evt)
+      .then((res) => {
+        setCurrentUser({
+          name: res.name, 
+          about: res.about,
+          avatar: res.avatar,
+          id: res._id 
+          });
+      })
+      .catch((err) => console.log(err));
+
+    closeAllPopups();
+    }
+
   function closeAllPopups() {
     setEditAvatarPopupOpen(false);
     setEditProfilePopupOpen(false);
@@ -66,7 +82,7 @@ function App() {
         />
         <Footer />
       </div>
-      <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} />
+      <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser = {handleUpdateUser} />
 
       <PopupWithForm
         name="add-element"
