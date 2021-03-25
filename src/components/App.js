@@ -103,10 +103,12 @@ function App() {
           avatar: res.avatar,
           id: res._id,
         });
+
+        closeAllPopups();
       })
       .catch((err) => console.log(err));
 
-    closeAllPopups();
+    
   }
 
   function handleUpdateAvatar(evt) {
@@ -119,10 +121,12 @@ function App() {
           avatar: res.avatar,
           id: res._id,
         });
+
+        closeAllPopups();
       })
       .catch((err) => console.log(err));
 
-    closeAllPopups();
+    
   }
 
   function handleAddPlaceSubmit(evt) {
