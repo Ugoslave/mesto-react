@@ -116,6 +116,16 @@ function handleCardDelete(card) {
       closeAllPopups();
       }
 
+    function handleAddPlaceSubmit(evt) {
+        api
+          .addCard(evt)
+          .then((res) => {
+            setCards([res, ...cards])})
+          .catch((err) => console.log(err));
+    
+        closeAllPopups();
+        }
+
   function closeAllPopups() {
     setEditAvatarPopupOpen(false);
     setEditProfilePopupOpen(false);
@@ -139,7 +149,7 @@ function handleCardDelete(card) {
         <Footer />
       </div>
       <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser = {handleUpdateUser} />
-      <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} />
+      <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace={handleAddPlaceSubmit} />
       <ImagePopup card={selectedCard} onClose={closeAllPopups} />
       <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar = {handleUpdateAvatar} />
       <PopupWithForm
