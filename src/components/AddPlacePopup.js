@@ -23,6 +23,13 @@ function AddPlacePopup({isOpen, onClose, onAddPlace}) {
     });
   }
 
+  React.useEffect(() => {
+    if (isOpen === false) {
+      setNewCardTitle('');
+      setNewCardLink('');
+    }
+    }, [isOpen]);
+
   return (
     <PopupWithForm
         name="add-element"
