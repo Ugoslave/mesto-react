@@ -8,6 +8,7 @@ import api from "../utils/Api";
 import {CurrentUserContext} from "../contexts/CurrentUserContext";
 import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
+import AddPlacePopup from "./AddPlacePopup";
 
 function App() {
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false);
@@ -66,8 +67,6 @@ function handleCardDelete(card) {
       })
       .catch((err) => console.log(err));
   }, []);
-
-
 
   function handleEditAvatarClick() {
     setEditAvatarPopupOpen(true);
@@ -140,47 +139,16 @@ function handleCardDelete(card) {
         <Footer />
       </div>
       <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser = {handleUpdateUser} />
-
-      <PopupWithForm
-        name="add-element"
-        title="Новое место"
-        buttonText="Создать"
-        isOpen={isAddPlacePopupOpen}
-        onClose={closeAllPopups}
-      >
-        <input
-          required
-          type="text"
-          name="name"
-          placeholder="Название"
-          minLength="2"
-          maxLength="30"
-          id="title-card"
-          className="popup__input popup__input_data_title"
-        />
-        <span id="title-card-error" className="popup__input-error" />
-        <input
-          required
-          type="url"
-          name="link"
-          placeholder="Ссылка на картинку"
-          id="link-card"
-          className="popup__input popup__input_data_link"
-        />
-        <span id="link-card-error" className="popup__input-error" />
-      </PopupWithForm>
-
+      <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} />
       <ImagePopup card={selectedCard} onClose={closeAllPopups} />
-
+      <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar = {handleUpdateAvatar} />
       <PopupWithForm
         name="remove-confirmation"
         title="Вы уверены?"
         buttonText="Да"
       />
-
-      <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar = {handleUpdateAvatar} />
-        
     </CurrentUserContext.Provider>
+      
   );
 }
 
